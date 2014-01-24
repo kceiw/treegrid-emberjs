@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>demo_app</title>
+  <meta name="description" content="">
+  <meta name="author" content="maoliang">
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="demo_app.css">
+</head>
+
+<body>
+    <script type="text/x-handlebars" data-template-name="treeGridControl">
+    <div>
+        <table class="grid-table">
+            <thead class="grid-header">
+                <tr>
+                    <th scope="col" class="grid-column" {{bind-attr width=width}}>column 1</th>
+                    <th scope="col" class="grid-column">column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each itemController="treeGridRow"}}
+                    <tr {{bind-attr class=isDisplay:grid-row:grid-row-hide}}>
+                        <td class="grid-cell">
+                            <div class="expansion-cell" {{bind-attr style=left_margin}}>
+                                <div {{bind-attr class=hasChildren:show-tree-operation:hide-tree-operation}}>
+                                    <div {{bind-attr class=isExpanded:tree-expanded:tree-collapsed}}
+                                        {{action "toggleExpansion"}}>
+                                    </div>
+                                </div>
+                                <div class="expansion-cell-content">
+                                    {{name}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="grid-cell">{{detail}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+	</script>
+
+	<!-- separate them -->
+	<!--
+	<script type="text/x-handlebars" id="application">
+        {{outlet}}
+    </scrip>
+    -->
+
+    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script src="js/libs/handlebars-1.0.0.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/models/treeGridModel.js"></script>
+    <script src="js/controllers/demoapp_controller.js"></script>
+    <script src="js/controllers/treeGridRow_controller.js"></script>
+</body>
+</html>
