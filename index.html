@@ -25,12 +25,13 @@
         <table class="grid-table">
             <thead class="grid-header">
                 <tr>
-                    <th scope="col" class="grid-column" {{bind-attr width=width}}>column 1</th>
-                    <th scope="col" class="grid-column">column 2</th>
+                    {{#each column in columns itemController="treeGridColumn"}}
+                    <th scope="col" class="grid-column" {{bind-attr width=width}}>{{title}}</th>
+                    {{/each}}
                 </tr>
             </thead>
             <tbody>
-                {{#each itemController="treeGridRow"}}
+                {{#each row in rows itemController="treeGridRow"}}
                     <tr {{bind-attr class=isDisplay:grid-row:grid-row-hide}}>
                         <td class="grid-cell">
                             <div class="expansion-cell" {{bind-attr style=left_margin}}>
@@ -68,5 +69,6 @@
     <script src="js/models/treeGridModel.js"></script>
     <script src="js/controllers/demoapp_controller.js"></script>
     <script src="js/controllers/treeGridRow_controller.js"></script>
+    <script src="js/controllers/treeGridColumn_controller.js"></script>
 </body>
 </html>

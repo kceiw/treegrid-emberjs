@@ -2,20 +2,34 @@
  * @author maoliang
  */
 
-DemoApp.TreeGridColumn = DS.Model.extend({
-    
+DemoApp.TreeGridColumnModel = DS.Model.extend({
+    title: DS.attr('string'),
+    width: DS.attr('string'),
 });
 
-DemoApp.TreeGridModel = DS.Model.extend({
+DemoApp.TreeGridRowModel = DS.Model.extend({
     name: DS.attr('string'),
     detail: DS.attr('string'),
-    children: DS.hasMany('TreeGridModel', {
+    children: DS.hasMany('TreeGridRowModel', {
         inverse: 'parent'
     }),
-    parent: DS.belongsTo('TreeGridModel'),
+    parent: DS.belongsTo('TreeGridRowModel'),
     isShowChildren: DS.attr('boolean', { defaultValue: false }),
     isDisplay: DS.attr('boolean', { defaultValue: false }),
 });
+
+DemoApp.TreeGridColumnModel.FIXTURES = [
+                                   {
+                                       id: 1,
+                                       title: 'name',
+                                       width: '10%',
+                                   },
+                                   {
+                                       id: 2,
+                                       title: 'detail',
+                                       width: '90%',
+                                   }
+                                   ];
 
 /**
  * 1
@@ -29,7 +43,7 @@ DemoApp.TreeGridModel = DS.Model.extend({
  * |- 9
  *    |- 10
  */
-DemoApp.TreeGridModel.FIXTURES = [
+DemoApp.TreeGridRowModel.FIXTURES = [
                                        {
                                            id: 1,
                                            name: 'node 1',

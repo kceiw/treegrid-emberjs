@@ -8,6 +8,9 @@ DemoApp.Router.map(function () {
 
 DemoApp.TreeGridControlRoute = Ember.Route.extend({
     model: function () {
-        return this.store.find('treeGridModel');
-    }
+        return Ember.Object.create({
+            columns: this.store.find('treeGridColumnModel'),
+            rows: this.store.find('treeGridRowModel'),
+        });
+    },
 });
