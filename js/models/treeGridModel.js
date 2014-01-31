@@ -15,7 +15,8 @@ DemoApp.TreeGridRowModel = DS.Model.extend({
     }),
     parent: DS.belongsTo('TreeGridRowModel'),
     isShowChildren: DS.attr('boolean', { defaultValue: false }),
-    isDisplay: DS.attr('boolean', { defaultValue: false }),
+    isShown: DS.attr('boolean', { defaultValue: false }),
+    isSelected: DS.attr('boolean', { defaultValue: false }),
 });
 
 DemoApp.TreeGridColumnModel.FIXTURES = [
@@ -52,7 +53,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            children: [ 2 ],
                                            parent: null,
                                            isShowChildren: false,
-                                           isDisplay: true,
+                                           isShown: true,
                                        },
                                        {
                                            id: 2,
@@ -62,7 +63,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            children: [ 3 ],
                                            parent: 1,
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        {
                                            id: 3,
@@ -72,7 +73,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            children: [ ],
                                            parent: 2,
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        /*
                                        {
@@ -81,7 +82,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            detail: 'detail 4',
                                            children: [],
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        {
                                            id: 5,
@@ -89,7 +90,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            detail: 'detail 5',
                                            children: [ ],
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        {
                                            id: 6,
@@ -97,7 +98,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            detail: 'detail 6',
                                            children: [ ],
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        {
                                            id: 7,
@@ -105,7 +106,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            detail: 'detail 7',
                                            children: [ 8 ],
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        {
                                            id: 8,
@@ -113,7 +114,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            detail: 'detail 8',
                                            children: [],
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        {
                                            id: 9,
@@ -121,7 +122,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            detail: 'detail 9',
                                            children: [ 10 ],
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        },
                                        {
                                            id: 10,
@@ -129,7 +130,7 @@ DemoApp.TreeGridRowModel.FIXTURES = [
                                            detail: 'detail 10',
                                            children: [],
                                            isShowChildren: false,
-                                           isDisplay: false,
+                                           isShown: false,
                                        }
                                        */
                                        ];

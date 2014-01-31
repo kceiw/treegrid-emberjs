@@ -20,38 +20,46 @@
 </head>
 
 <body>
-    <script type="text/x-handlebars" data-template-name="treeGridControl">
+    <script type="text/x-handlebars" data-template-name="treeGridRow">
+        {{#with view.content}}
+        <tr {{bind-attr class="isShown:grid-row:grid-row-hide isSelected:grid-row-selected"}}>
+            <td class="grid-cell">
+                <div {{bind-attr class=":expansion-cell" style="left_margin"}}>
+                    <div {{bind-attr class="hasChildren:show-tree-operation:hide-tree-operation"}}>
+                        <div {{bind-attr class="isExpanded:tree-expanded:tree-collapsed"}}>
+                        </div>
+                    </div>
+                    <div {{bind-attr class=":expansion-cell-content"}}>
+                        {{name}}
+                    </div>
+                </div>
+            </td>
+            <td {{bind-attr class="grid-cell"}}>{{detail}}</td>
+        </tr>
+        {{/with}}
+    </script>
+
+
+    <script type="text/x-handlebars" id="components/tree-grid">
     <div>
         <table class="grid-table">
             <thead class="grid-header">
                 <tr>
                     {{#each column in columns itemController="treeGridColumn"}}
-                    <th scope="col" class="grid-column" {{bind-attr width=width}}>{{title}}</th>
+                        <th scope="col" class="grid-column" {{bind-attr width="width"}}>{{title}}</th>
                     {{/each}}
                 </tr>
             </thead>
             <tbody>
-                {{#each row in rows itemController="treeGridRow"}}
-                    <tr {{bind-attr class=isDisplay:grid-row:grid-row-hide}}>
-                        <td class="grid-cell">
-                            <div class="expansion-cell" {{bind-attr style=left_margin}}>
-                                <div {{bind-attr class=hasChildren:show-tree-operation:hide-tree-operation}}>
-                                    <div {{bind-attr class=isExpanded:tree-expanded:tree-collapsed}}
-                                        {{action "toggleExpansion"}}>
-                                    </div>
-                                </div>
-                                <div class="expansion-cell-content">
-                                    {{name}}
-                                </div>
-                            </div>
-                        </td>
-                        <td class="grid-cell">{{detail}}</td>
-                    </tr>
-                {{/each}}
+                {{render "treeGridRows" rows}}
             </tbody>
         </table>
     </div>
 	</script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+        {{tree-grid columns=columns rows=rows}}
+    </script>
 
 	<!-- separate them -->
 	<!--
@@ -67,7 +75,10 @@
     <script src="js/application.js"></script>
     <script src="js/router.js"></script>
     <script src="js/models/treeGridModel.js"></script>
-    <script src="js/controllers/demoapp_controller.js"></script>
+    <script src="js/views/treeGridRow_view.js"></script>
+    <script src="js/views/treeGridRows_view.js"></script>
+    <script src="js/components/treeGrid_component.js"></script>
+    <script src="js/controllers/treeGridRows_controller.js"></script>
     <script src="js/controllers/treeGridRow_controller.js"></script>
     <script src="js/controllers/treeGridColumn_controller.js"></script>
 </body>

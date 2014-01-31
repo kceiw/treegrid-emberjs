@@ -23,6 +23,10 @@ body {
 .grid-row {
 }
 
+.grid-row-selected {
+    background-color: red;
+}
+
 .grid-row-hide {
     display: none;
 }

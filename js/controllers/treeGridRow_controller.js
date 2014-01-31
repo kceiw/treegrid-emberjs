@@ -3,13 +3,18 @@
  */
 
 DemoApp.TreeGridRowController = Ember.ObjectController.extend({
+    init: function () {
+        this._super();
+        console.log('TreeGRidRowController');
+    },
+
     actions: {
         toggleExpansion: function () {
             this.toggleProperty('isExpanded');
-        }
+        },
     },
     
-    hasChildren: function(key, value) {
+    hasChildren: function (key, value) {
         var model = this.get('model');
 
         if (value === undefined) {
@@ -23,17 +28,27 @@ DemoApp.TreeGridRowController = Ember.ObjectController.extend({
         return false;
     }.property('model.children'),
 
-    isDisplay: function(key, value) {
+    isShown: function (key, value) {
         var model = this.get('model');
         
         if (value === undefined) {
-            return model.get('isDisplay');
+            return model.get('isShown');
         } else {
             // the model property shouldn't be changed from the view directly.
         }
-    }.property('model.isDisplay'),
+    }.property('model.isShown'),
     
-    isExpanded: function(key, value) {
+    isSelected: function (key, value) {
+        var model = this.get('model');
+        
+        if (value === undefined) {
+            return model.get('isSelected');
+        } else {
+            // no setter.
+        }
+    }.property('model.isSelected'),
+    
+    isExpanded: function (key, value) {
         var model = this.get('model');
 
         if (value === undefined) {
@@ -59,8 +74,8 @@ DemoApp.TreeGridRowController = Ember.ObjectController.extend({
             return;
         }
         
-        var isDisplay = this.get('isDisplay');
-        if (isDisplay == null || !isDisplay) {
+        var isShown = this.get('isShown');
+        if (isShown == null || !isShown) {
             return;
         }
     
@@ -73,11 +88,11 @@ DemoApp.TreeGridRowController = Ember.ObjectController.extend({
         }
         var result = 'margin-left: ' + margin.toString() + 'px';
         return result;
-    }.property('model.isDisplay'),
+    }.property('model.isShown'),
     
     _expandChildren: function (children, length) {
         children.forEach(function (item, index, enumerable) {
-            item.set('isDisplay', true);
+            item.set('isShown', true);
             
             var isExpanded = item.get('isShowChildren');
             if (isExpanded) {
@@ -90,7 +105,7 @@ DemoApp.TreeGridRowController = Ember.ObjectController.extend({
     
     _collapseChildren: function (children) {
         children.forEach(function (item, index, enumerable) {
-            item.set('isDisplay', false);
+            item.set('isShown', false);
             this._collapseChildren(item.get('children'));
         }.bind(this)
         );
