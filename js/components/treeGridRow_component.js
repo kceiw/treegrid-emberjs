@@ -2,72 +2,76 @@
  * @author maoliang
  */
 
-DemoApp.TreeGridRowController = Ember.ObjectController.extend({
+DemoApp.TreeGridRowComponent = Ember.Component.extend({
     init: function () {
         this._super();
-        console.log('TreeGRidRowController');
+        console.log('TreeGRidRowComponent');
     },
 
     actions: {
         toggleExpansion: function () {
             this.toggleProperty('isExpanded');
         },
+
+        select: function () {
+            window.alert("select row.");
+        },
     },
     
     hasChildren: function (key, value) {
-        var model = this.get('model');
+        var row = this.get('row');
 
         if (value === undefined) {
-            var children = model.get('children');
-            var childrenCount = model.get('children.length');
+            var children = row.get('children');
+            var childrenCount = row.get('children.length');
             return (children != null) && (childrenCount > 0);
         } else {
             // no setter.
         }
 
         return false;
-    }.property('model.children'),
+    }.property('row.children'),
 
     isShown: function (key, value) {
-        var model = this.get('model');
+        var row = this.get('row');
         
         if (value === undefined) {
-            return model.get('isShown');
+            return row.get('isShown');
         } else {
-            // the model property shouldn't be changed from the view directly.
+            // the row property shouldn't be changed from the view directly.
         }
-    }.property('model.isShown'),
+    }.property('row.isShown'),
     
     isSelected: function (key, value) {
-        var model = this.get('model');
+        var row = this.get('row');
         
         if (value === undefined) {
-            return model.get('isSelected');
+            return row.get('isSelected');
         } else {
             // no setter.
         }
-    }.property('model.isSelected'),
+    }.property('row.isSelected'),
     
     isExpanded: function (key, value) {
-        var model = this.get('model');
+        var row = this.get('row');
 
         if (value === undefined) {
-            return model.get('isShowChildren');
+            return row.get('isShowChildren');
         } else {
-            model.set('isShowChildren', value);
+            row.set('isShowChildren', value);
             
             // when value is true, we expand the node and show the children.
             // Otherwise, children are hidden.
             if (value) {
-                var children = model.get('children');
+                var children = row.get('children');
                 this._expandChildren(children);
             } else {
-                this._collapseChildren(model.get('children'));
+                this._collapseChildren(row.get('children'));
             }
 
             return value;
         }
-    }.property('model.isShowChildren'),
+    }.property('row.isShowChildren'),
 
     left_margin: function (key, value) {
         if (value != null) {
@@ -79,8 +83,8 @@ DemoApp.TreeGridRowController = Ember.ObjectController.extend({
             return;
         }
     
-        var model = this.get('model');
-        var parent = model.get('parent');
+        var row = this.get('row');
+        var parent = row.get('parent');
         var margin = 0;
         while (parent != null) {
             margin += 8;
@@ -88,7 +92,7 @@ DemoApp.TreeGridRowController = Ember.ObjectController.extend({
         }
         var result = 'margin-left: ' + margin.toString() + 'px';
         return result;
-    }.property('model.isShown'),
+    }.property('row.isShown'),
     
     _expandChildren: function (children, length) {
         children.forEach(function (item, index, enumerable) {

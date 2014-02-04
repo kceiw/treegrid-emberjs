@@ -20,27 +20,33 @@
 </head>
 
 <body>
-    <script type="text/x-handlebars" data-template-name="treeGridRow">
-        {{#with view.content}}
-        <tr {{bind-attr class="isShown:grid-row:grid-row-hide isSelected:grid-row-selected"}}>
-            <td class="grid-cell">
+    <script type="text/x-handlebars" 
+        data-template-name="components/tree-grid-expand-icon">
+        <div {{bind-attr class="isExpanded:tree-expanded:tree-collapsed"}}
+            {{action "toggleExpansion" on="click"}}>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="components/tree-grid-row">
+        <tr {{bind-attr class="isShown:grid-row:grid-row-hide isSelected:grid-row-selected"}}
+            {{action "select" on="click"}}>
+            <td {{bind-attr class=":grid-cell"}}>
                 <div {{bind-attr class=":expansion-cell" style="left_margin"}}>
                     <div {{bind-attr class="hasChildren:show-tree-operation:hide-tree-operation"}}>
-                        <div {{bind-attr class="isExpanded:tree-expanded:tree-collapsed"}}>
-                        </div>
+                        {{tree-grid-expand-icon isExpanded="isExpanded"
+                            action="toggleExpansion"}}
                     </div>
                     <div {{bind-attr class=":expansion-cell-content"}}>
-                        {{name}}
+                        {{row.name}}
                     </div>
                 </div>
             </td>
-            <td {{bind-attr class="grid-cell"}}>{{detail}}</td>
+            <td {{bind-attr class=":grid-cell"}}>{{row.detail}}</td>
         </tr>
-        {{/with}}
     </script>
 
 
-    <script type="text/x-handlebars" id="components/tree-grid">
+    <script type="text/x-handlebars" data-template-name="components/tree-grid">
     <div>
         <table class="grid-table">
             <thead class="grid-header">
@@ -51,7 +57,9 @@
                 </tr>
             </thead>
             <tbody>
-                {{render "treeGridRows" rows}}
+                {{#each row in rows}}
+                    {{tree-grid-row row=row}}
+                {{/each}}
             </tbody>
         </table>
     </div>
@@ -75,11 +83,17 @@
     <script src="js/application.js"></script>
     <script src="js/router.js"></script>
     <script src="js/models/treeGridModel.js"></script>
+    <!--
     <script src="js/views/treeGridRow_view.js"></script>
     <script src="js/views/treeGridRows_view.js"></script>
+    -->
     <script src="js/components/treeGrid_component.js"></script>
+    <script src="js/components/treeGridRow_component.js"></script>
+    <script src="js/components/treeGridExpandIcon_component.js"></script>
+    <!--
     <script src="js/controllers/treeGridRows_controller.js"></script>
     <script src="js/controllers/treeGridRow_controller.js"></script>
+    -->
     <script src="js/controllers/treeGridColumn_controller.js"></script>
 </body>
 </html>
