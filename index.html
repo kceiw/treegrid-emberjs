@@ -33,7 +33,7 @@
             <td {{bind-attr class=":grid-cell"}}>
                 <div {{bind-attr class=":expansion-cell" style="left_margin"}}>
                     <div {{bind-attr class="hasChildren:show-tree-operation:hide-tree-operation"}}>
-                        {{tree-grid-expand-icon isExpanded="isExpanded"
+                        {{tree-grid-expand-icon isExpanded=isExpanded
                             action="toggleExpansion"}}
                     </div>
                     <div {{bind-attr class=":expansion-cell-content"}}>
@@ -58,12 +58,12 @@
             </thead>
             <tbody>
                 {{#each row in rows}}
-                    {{tree-grid-row row=row}}
+                    {{tree-grid-row row=row action="toggleRowChildren"}}
                 {{/each}}
             </tbody>
         </table>
     </div>
-	</script>
+    </script>
 
     <script type="text/x-handlebars" data-template-name="index">
         {{tree-grid columns=columns rows=rows}}
