@@ -28,8 +28,6 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="components/tree-grid-row">
-        <tr {{bind-attr class="isShown:grid-row:grid-row-hide isSelected:grid-row-selected"}}
-            {{action "select" on="click"}}>
             <td {{bind-attr class=":grid-cell"}}>
                 <div {{bind-attr class=":expansion-cell" style="left_margin"}}>
                     <div {{bind-attr class="hasChildren:show-tree-operation:hide-tree-operation"}}>
@@ -42,7 +40,6 @@
                 </div>
             </td>
             <td {{bind-attr class=":grid-cell"}}>{{row.detail}}</td>
-        </tr>
     </script>
 
 
@@ -58,7 +55,7 @@
             </thead>
             <tbody>
                 {{#each row in rows}}
-                    {{tree-grid-row row=row action="toggleRowChildren"}}
+                    {{tree-grid-row row=row action="selected"}}
                 {{/each}}
             </tbody>
         </table>

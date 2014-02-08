@@ -3,6 +3,9 @@
  */
 
 DemoApp.TreeGridRowComponent = Ember.Component.extend({
+    tagName: 'tr',
+    classNameBindings: ['isShown:grid-row:grid-row-hide', 'isSelected:grid-row-selected'],
+
     init: function () {
         this._super();
         console.log('TreeGRidRowComponent');
@@ -11,12 +14,22 @@ DemoApp.TreeGridRowComponent = Ember.Component.extend({
     actions: {
         toggleExpansion: function () {
             var row = this.get('row');
-            this.sendAction('action', row);
+            row.toggleProperty('isShowChildren');
+            var value = row.get('isShowChildren');
+
+            if (value) {
+                var children = row.get('children');
+                this._expandChildren(children);
+            } else {
+                this._collapseChildren(row.get('children'));
+            }
         },
 
-        select: function () {
-            //window.alert("select row.");
-        },
+    },
+
+    click: function () {
+        var row = this.get('row');
+        this.sendAction('action', row);
     },
     
     hasChildren: function (key, value) {
