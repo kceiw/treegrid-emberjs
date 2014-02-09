@@ -3,7 +3,8 @@
  */
 
 DemoApp.TreeGridComponent = Ember.Component.extend({
-    selectedRow: null,
+	tagName: 'div',
+	
     actions: {
         selected: function (newSelectedRow) {
             if (this.selectedRow === newSelectedRow) {
@@ -17,9 +18,12 @@ DemoApp.TreeGridComponent = Ember.Component.extend({
             this.selectedRow = newSelectedRow;
             this.selectedRow.set('isSelected', true);
         },
-
-        keyPress: function () {
-            window.alert('hi');
-        },
     },
+    
+    setFocus: function() {
+        // brings the view into focus in order to capture keyboard events.
+        return this.$().attr({ tabindex: 1 }), this.$().focus();
+    }.on('didInsertElement'),
+    
+    selectedRow: null,
 });

@@ -44,7 +44,6 @@
 
 
     <script type="text/x-handlebars" data-template-name="components/tree-grid">
-    <div>
         <table class="grid-table">
             <thead class="grid-header">
                 <tr>
@@ -59,19 +58,11 @@
                 {{/each}}
             </tbody>
         </table>
-    </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="index">
         {{tree-grid columns=columns rows=rows}}
     </script>
-
-	<!-- separate them -->
-	<!--
-	<script type="text/x-handlebars" id="application">
-        {{outlet}}
-    </scrip>
-    -->
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>
     <script src="js/libs/handlebars-1.0.0.js"></script>
@@ -80,17 +71,9 @@
     <script src="js/application.js"></script>
     <script src="js/router.js"></script>
     <script src="js/models/treeGridModel.js"></script>
-    <!--
-    <script src="js/views/treeGridRow_view.js"></script>
-    <script src="js/views/treeGridRows_view.js"></script>
-    -->
     <script src="js/components/treeGrid_component.js"></script>
     <script src="js/components/treeGridRow_component.js"></script>
     <script src="js/components/treeGridExpandIcon_component.js"></script>
-    <!--
-    <script src="js/controllers/treeGridRows_controller.js"></script>
-    <script src="js/controllers/treeGridRow_controller.js"></script>
-    -->
     <script src="js/controllers/treeGridColumn_controller.js"></script>
 </body>
 </html>

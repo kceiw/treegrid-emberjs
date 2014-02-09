@@ -6,11 +6,6 @@ DemoApp.TreeGridRowComponent = Ember.Component.extend({
     tagName: 'tr',
     classNameBindings: ['isShown:grid-row:grid-row-hide', 'isSelected:grid-row-selected'],
 
-    init: function () {
-        this._super();
-        console.log('TreeGRidRowComponent');
-    },
-
     actions: {
         toggleExpansion: function () {
             var row = this.get('row');
