@@ -12,11 +12,11 @@ body {
 }
 
 .grid-header {
-    /*display: table-row;*/
     border-bottom: 1px solid #333;
     text-align: left;
     background-color: #333;
 }
+
 .grid-column {
 }
 
@@ -47,7 +47,8 @@ body {
 }
 
 .hide-tree-operation {
-    display: none;
+    visibility: hidden;
+    float: left;
 }
 
 .tree-expanded {

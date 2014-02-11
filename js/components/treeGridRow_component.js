@@ -10,16 +10,7 @@ DemoApp.TreeGridRowComponent = Ember.Component.extend({
         toggleExpansion: function () {
             var row = this.get('row');
             row.toggleProperty('isShowChildren');
-            var value = row.get('isShowChildren');
-
-            if (value) {
-                var children = row.get('children');
-                this._expandChildren(children);
-            } else {
-                this._collapseChildren(row.get('children'));
-            }
         },
-
     },
 
     click: function () {
@@ -91,6 +82,18 @@ DemoApp.TreeGridRowComponent = Ember.Component.extend({
         var result = 'margin-left: ' + margin.toString() + 'px';
         return result;
     }.property('row.isShown'),
+
+    isShowChildrenChanged: function () {
+        var row = this.get('row');
+        var value = row.get('isShowChildren');
+
+        if (value) {
+            var children = row.get('children');
+            this._expandChildren(children);
+        } else {
+            this._collapseChildren(row.get('children'));
+        }
+    }.observes('row.isShowChildren').on('init'),
     
     _expandChildren: function (children) {
         children.forEach(function (item, index, enumerable) {
