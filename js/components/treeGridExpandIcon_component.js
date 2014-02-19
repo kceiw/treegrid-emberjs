@@ -3,16 +3,13 @@
  * @author maoliang
  */
 
-var TreeGrid = (function (module) {
-    /**
-     * Shows the expand/collapse icon and also response to click event.
-     * The user who uses it should handle the action toggleExpansion.
-     */
-    module.ExpandIconComponent = Ember.Component.extend({
-        click: function() {
-            this.sendAction();
-       },
-    });
+/**
+ * Shows the expand/collapse icon and also response to click event.
+ * The user who uses it should handle the action toggleExpansion.
+ */
+DemoApp.TreeGridExpandIconComponent = Ember.Component.extend({
+    click: function() {
+        this.sendAction();
+   },
+});
 
-    return module;
-})(TreeGrid || {});
