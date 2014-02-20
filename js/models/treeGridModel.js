@@ -24,8 +24,7 @@ DemoApp.TreeGridColumnModel = DS.Model.extend({
 /**
  * Defines view model for each row. Each row represents a node in the 
  * tree.
- * An array of such view model is a tree representation in dept first 
- * search order.
+ * An array of such view model is a tree representation in preorder.
  * The parent-children relation is reflected in the fields children and 
  * parent.
  * e.g. a tree
